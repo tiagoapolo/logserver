@@ -1,0 +1,14 @@
+{
+  "name": "log-server",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "Tiago Fonseca <tiago.fonseca@telefonica.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "~4.16.4",
+    "body-parser": "~1.18.3"
+  }
+}
