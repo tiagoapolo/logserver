@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 
 // Constants
-const PORT = process.argv[2] ? process.argv[2] : 8888
+const PORT = process.argv[2] === '-p' ? process.argv[3] ? process.argv[3] : Error('Missing PORT Parameter!!!') : 8888
 const HOST = '0.0.0.0';
 
 // App
