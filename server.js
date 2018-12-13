@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const fs = require('fs'), path = require('path');
 
+
 const app = express();
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 
 // Constants
-const PORT = 8080;
+const PORT = process.argv[2] ? process.argv[2] : 8888
 const HOST = '0.0.0.0';
 
 // App
