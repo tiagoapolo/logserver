@@ -2,7 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser')
-const fs = require('fs');
+const fs = require('fs'), path = require('path');
 
 const app = express();
 
@@ -30,6 +30,34 @@ app.post('/logs', (req, res) => {
   })  
   
 });
+
+app.get('/logs', (req, res) => {
+  fs.readdir('./', (err, files) => {
+    res.send(files.filter((file) => file.indexOf('witbee')>=0))
+  })
+})
+
+app.get('/logs/:filename', (req, res) => {
+  fs.readdir('./', (err, files) => {
+    if(err) {
+      console.log(err)
+      res.send('Nothing found')
+      return
+      
+    } else {
+
+      if(files.filter((file) => file.indexOf(req.params.filename)>=0).length){
+        let filePath = path.join(__dirname, req.params.filename);
+        res.download(filePath)
+      } else {
+        res.send('File is not permitted or not found')
+        return
+      }
+    
+    }
+
+  })
+})
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
